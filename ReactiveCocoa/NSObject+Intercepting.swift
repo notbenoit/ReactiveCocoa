@@ -215,8 +215,7 @@ private func enableMessageForwarding(_ realClass: AnyClass, _ selectorCache: Sel
 			return
 		}
 
-		let impl: IMP = method.map(method_getImplementation) ?? _rac_objc_msgForward
-		if impl != _rac_objc_msgForward {
+		if let impl = method.map(method_getImplementation) ?? _rac_objc_msgForward, impl != _rac_objc_msgForward {
 			// The perceived class, or its ancestors, responds to the selector.
 			//
 			// The implementation is invoked through the selector alias, which
